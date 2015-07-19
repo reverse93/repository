@@ -8,8 +8,14 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
 
+    
+    @IBOutlet weak var itemNameField: UITextField!
+    
+    @IBOutlet weak var detailsNameField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +26,34 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
+    @IBAction func ItemButton(sender: UIButton) {
+        if( itemNameField.text.isEmpty)
+        {
+            displayAlert()
+   
+        }
+        itemMgr.addItem(itemNameField.text, details: detailsNameField.text)
+            self.tabBarController?.selectedIndex = 0 
+    
+    }
+
+    func displayAlert(){
+        let alert = UIAlertController(title: " Empty Name", message: "You cannot save item without a name", preferredStyle: UIAlertControllerStyle.Alert)
+    
+    alert.addAction(UIAlertAction(title:"Dismiss",style:UIAlertActionStyle.Default, handler: nil))
+    
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 
 }
+
 
