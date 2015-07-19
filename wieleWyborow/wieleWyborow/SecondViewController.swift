@@ -42,7 +42,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
    
         }
         itemMgr.addItem(itemNameField.text, details: detailsNameField.text)
-            self.tabBarController?.selectedIndex = 0 
+            self.tabBarController?.selectedIndex = 0
     
     }
 
